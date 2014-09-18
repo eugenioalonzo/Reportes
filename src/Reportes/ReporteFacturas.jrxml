@@ -23,19 +23,29 @@
 			<pen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
-	<subDataset name="Facturas">
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="REPORTES">
 		<queryString language="SQL">
 			<![CDATA[SELECT
-     Cliente."IdCliente" AS Cliente_IdCliente,
-     Cliente."Nombre" AS Cliente_Nombre,
-     Cliente."Cedula" AS Cliente_Cedula,
-     Cliente."Direccion" AS Cliente_Direccion,
-     Cliente."Telefono" AS Cliente_Telefono,
-     Empleado."IdEmpleado" AS Empleado_IdEmpleado,
-     Empleado."Cedula" AS Empleado_Cedula,
-     Empleado."Nombre" AS Empleado_Nombre,
-     Empleado."Direccion" AS Empleado_Direccion,
-     Empleado."Telefono" AS Empleado_Telefono,
      Factura."IdFactura" AS Factura_IdFactura,
      Factura."IdCliente" AS Factura_IdCliente,
      Factura."IdEmpleado" AS Factura_IdEmpleado,
@@ -43,6 +53,16 @@
      Factura."Fecha" AS Factura_Fecha,
      Factura."Cantidad" AS Factura_Cantidad,
      Factura."Valor" AS Factura_Valor,
+     Empleado."IdEmpleado" AS Empleado_IdEmpleado,
+     Empleado."Cedula" AS Empleado_Cedula,
+     Empleado."Nombre" AS Empleado_Nombre,
+     Empleado."Direccion" AS Empleado_Direccion,
+     Empleado."Telefono" AS Empleado_Telefono,
+     Cliente."IdCliente" AS Cliente_IdCliente,
+     Cliente."Nombre" AS Cliente_Nombre,
+     Cliente."Cedula" AS Cliente_Cedula,
+     Cliente."Direccion" AS Cliente_Direccion,
+     Cliente."Telefono" AS Cliente_Telefono,
      Mercaderia."IdMercaderia" AS Mercaderia_IdMercaderia,
      Mercaderia."Codigo" AS Mercaderia_Codigo,
      Mercaderia."Nombre" AS Mercaderia_Nombre,
@@ -50,14 +70,14 @@
      Mercaderia."Cantidad" AS Mercaderia_Cantidad,
      Mercaderia."IdBodega" AS Mercaderia_IdBodega
 FROM
-     "dbo"."Cliente" Cliente INNER JOIN "dbo"."Factura" Factura ON Cliente."IdCliente" = Factura."IdCliente"
-     INNER JOIN "dbo"."Empleado" Empleado ON Factura."IdEmpleado" = Empleado."IdEmpleado"
+     "dbo"."Empleado" Empleado INNER JOIN "dbo"."Factura" Factura ON Empleado."IdEmpleado" = Factura."IdEmpleado"
+     INNER JOIN "dbo"."Cliente" Cliente ON Factura."IdCliente" = Cliente."IdCliente"
      INNER JOIN "dbo"."Mercaderia" Mercaderia ON Factura."IdMercaderia" = Mercaderia."IdMercaderia"]]>
 		</queryString>
 		<field name="Factura_IdFactura" class="java.lang.Integer"/>
 		<field name="Factura_Fecha" class="java.sql.Date"/>
-		<field name="Cliente_Nombre" class="java.lang.String"/>
 		<field name="Empleado_Nombre" class="java.lang.String"/>
+		<field name="Cliente_Nombre" class="java.lang.String"/>
 		<field name="Mercaderia_Nombre" class="java.lang.String"/>
 		<field name="Factura_Cantidad" class="java.lang.Integer"/>
 		<field name="Mercaderia_PrecioUnitario" class="java.math.BigDecimal"/>
@@ -72,16 +92,16 @@ FROM
      Factura."Fecha" AS Factura_Fecha,
      Factura."Cantidad" AS Factura_Cantidad,
      Factura."Valor" AS Factura_Valor,
-     Cliente."IdCliente" AS Cliente_IdCliente,
-     Cliente."Nombre" AS Cliente_Nombre,
-     Cliente."Cedula" AS Cliente_Cedula,
-     Cliente."Direccion" AS Cliente_Direccion,
-     Cliente."Telefono" AS Cliente_Telefono,
      Empleado."IdEmpleado" AS Empleado_IdEmpleado,
      Empleado."Cedula" AS Empleado_Cedula,
      Empleado."Nombre" AS Empleado_Nombre,
      Empleado."Direccion" AS Empleado_Direccion,
      Empleado."Telefono" AS Empleado_Telefono,
+     Cliente."IdCliente" AS Cliente_IdCliente,
+     Cliente."Nombre" AS Cliente_Nombre,
+     Cliente."Cedula" AS Cliente_Cedula,
+     Cliente."Direccion" AS Cliente_Direccion,
+     Cliente."Telefono" AS Cliente_Telefono,
      Mercaderia."IdMercaderia" AS Mercaderia_IdMercaderia,
      Mercaderia."Codigo" AS Mercaderia_Codigo,
      Mercaderia."Nombre" AS Mercaderia_Nombre,
@@ -89,146 +109,147 @@ FROM
      Mercaderia."Cantidad" AS Mercaderia_Cantidad,
      Mercaderia."IdBodega" AS Mercaderia_IdBodega
 FROM
-     "dbo"."Cliente" Cliente INNER JOIN "dbo"."Factura" Factura ON Cliente."IdCliente" = Factura."IdCliente"
-     INNER JOIN "dbo"."Empleado" Empleado ON Factura."IdEmpleado" = Empleado."IdEmpleado"
+     "dbo"."Empleado" Empleado INNER JOIN "dbo"."Factura" Factura ON Empleado."IdEmpleado" = Factura."IdEmpleado"
+     INNER JOIN "dbo"."Cliente" Cliente ON Factura."IdCliente" = Cliente."IdCliente"
      INNER JOIN "dbo"."Mercaderia" Mercaderia ON Factura."IdMercaderia" = Mercaderia."IdMercaderia"]]>
 	</queryString>
 	<field name="Factura_IdFactura" class="java.lang.Integer"/>
 	<field name="Factura_Fecha" class="java.sql.Date"/>
 	<field name="Factura_Cantidad" class="java.lang.Integer"/>
 	<field name="Factura_Valor" class="java.math.BigDecimal"/>
-	<field name="Cliente_Nombre" class="java.lang.String"/>
 	<field name="Empleado_Nombre" class="java.lang.String"/>
+	<field name="Cliente_Nombre" class="java.lang.String"/>
 	<field name="Mercaderia_Nombre" class="java.lang.String"/>
 	<field name="Mercaderia_PrecioUnitario" class="java.math.BigDecimal"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="70" splitType="Stretch">
+		<band height="48" splitType="Stretch">
 			<textField pattern="MMMMM dd, yyyy">
-				<reportElement x="7" y="11" width="100" height="20"/>
+				<reportElement x="15" y="21" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="174" y="26" width="225" height="39"/>
-				<textElement>
-					<font size="16" isBold="true"/>
-				</textElement>
-				<text><![CDATA[REPORTE DE FACTURAS]]></text>
-			</staticText>
 		</band>
 	</title>
 	<pageHeader>
-		<band splitType="Stretch"/>
+		<band height="66" splitType="Stretch">
+			<staticText>
+				<reportElement x="135" y="14" width="275" height="33"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESPORTES DE FACTURAS]]></text>
+			</staticText>
+		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="154" splitType="Stretch">
+		<band height="211" splitType="Stretch">
 			<componentElement>
-				<reportElement key="table" style="table" x="0" y="0" width="503" height="154"/>
+				<reportElement key="table 1" style="table 1" x="0" y="0" width="536" height="211"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="Facturas">
+					<datasetRun subDataset="REPORTES">
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="50">
-						<jr:tableHeader style="table_TH" height="30" rowSpan="1"/>
-						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
-						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+					<jr:column width="58">
+						<jr:tableHeader style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="5" y="0" width="45" height="30"/>
+								<reportElement x="0" y="0" width="58" height="30"/>
 								<textElement textAlignment="Center">
-									<font size="12" isBold="true"/>
+									<font size="14" isBold="true"/>
 								</textElement>
-								<text><![CDATA[N. Fac.]]></text>
+								<text><![CDATA[N. Fac]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="50" height="20"/>
+								<reportElement x="0" y="0" width="58" height="20"/>
 								<textElement textAlignment="Center"/>
 								<textFieldExpression><![CDATA[$F{Factura_IdFactura}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90">
-						<jr:tableHeader style="table_TH" height="30" rowSpan="1"/>
-						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
-						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+					<jr:column width="76">
+						<jr:tableHeader style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30"/>
+								<reportElement x="0" y="0" width="76" height="30"/>
 								<textElement textAlignment="Center">
-									<font size="12" isBold="true"/>
+									<font size="14" isBold="true"/>
 								</textElement>
-								<text><![CDATA[Fecha Factura]]></text>
+								<text><![CDATA[fecha]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20"/>
+								<reportElement x="0" y="0" width="76" height="20"/>
 								<textElement textAlignment="Center"/>
 								<textFieldExpression><![CDATA[$F{Factura_Fecha}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="72">
-						<jr:tableHeader style="table_TH" height="30" rowSpan="1"/>
-						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
-						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+					<jr:column width="77">
+						<jr:tableHeader style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="72" height="30"/>
+								<reportElement x="0" y="0" width="77" height="30"/>
 								<textElement textAlignment="Center">
-									<font size="12" isBold="true"/>
+									<font size="14" isBold="true"/>
 								</textElement>
-								<text><![CDATA[Cliente]]></text>
+								<text><![CDATA[empleado]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="72" height="20"/>
-								<textElement textAlignment="Center"/>
-								<textFieldExpression><![CDATA[$F{Cliente_Nombre}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="81">
-						<jr:tableHeader style="table_TH" height="30" rowSpan="1"/>
-						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
-						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="81" height="30"/>
-								<textElement textAlignment="Center">
-									<font size="12" isBold="true"/>
-								</textElement>
-								<text><![CDATA[Empleado]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table_TD" height="20" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="81" height="20"/>
+								<reportElement x="0" y="0" width="77" height="20"/>
 								<textElement textAlignment="Center"/>
 								<textFieldExpression><![CDATA[$F{Empleado_Nombre}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
+					<jr:column width="81">
+						<jr:tableHeader style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="81" height="30"/>
+								<textElement textAlignment="Center">
+									<font size="14" isBold="true"/>
+								</textElement>
+								<text><![CDATA[cliente]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="81" height="20"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{Cliente_Nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
 					<jr:column width="90">
-						<jr:tableHeader style="table_TH" height="30" rowSpan="1"/>
-						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
-						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+						<jr:tableHeader style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="90" height="30"/>
 								<textElement textAlignment="Center">
-									<font size="12" isBold="true"/>
+									<font size="14" isBold="true"/>
 								</textElement>
-								<text><![CDATA[Mercaderia]]></text>
+								<text><![CDATA[producto]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="20"/>
 								<textElement textAlignment="Center"/>
@@ -236,64 +257,64 @@ FROM
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="64">
-						<jr:tableHeader style="table_TH" height="30" rowSpan="1"/>
-						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
-						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+					<jr:column width="51">
+						<jr:tableHeader style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="64" height="30"/>
+								<reportElement x="0" y="0" width="51" height="30"/>
 								<textElement textAlignment="Center">
-									<font size="12" isBold="true"/>
+									<font size="14" isBold="true"/>
 								</textElement>
-								<text><![CDATA[Cantidad]]></text>
+								<text><![CDATA[Cant.]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="64" height="20"/>
+								<reportElement x="0" y="0" width="51" height="20"/>
 								<textElement textAlignment="Center"/>
 								<textFieldExpression><![CDATA[$F{Factura_Cantidad}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="43">
-						<jr:tableHeader style="table_TH" height="30" rowSpan="1"/>
-						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
-						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+					<jr:column width="60">
+						<jr:tableHeader style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="42" height="30"/>
+								<reportElement x="0" y="0" width="60" height="30"/>
 								<textElement textAlignment="Center">
-									<font size="12" isBold="true"/>
+									<font size="14" isBold="true"/>
 								</textElement>
-								<text><![CDATA[PVP]]></text>
+								<text><![CDATA[pvp]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="43" height="20"/>
+								<reportElement x="0" y="0" width="60" height="20"/>
 								<textElement textAlignment="Center"/>
 								<textFieldExpression><![CDATA[$F{Mercaderia_PrecioUnitario}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="101">
-						<jr:tableHeader style="table_TH" height="30" rowSpan="1"/>
-						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
-						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+					<jr:column width="90">
+						<jr:tableHeader style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="76" height="30"/>
+								<reportElement x="0" y="0" width="90" height="30"/>
 								<textElement textAlignment="Center">
-									<font size="12" isBold="true"/>
+									<font size="14" isBold="true"/>
 								</textElement>
-								<text><![CDATA[Valor Pagar]]></text>
+								<text><![CDATA[valor. fac]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="76" height="20"/>
+								<reportElement x="0" y="0" width="90" height="20"/>
 								<textElement textAlignment="Center"/>
 								<textFieldExpression><![CDATA[$F{Factura_Valor}]]></textFieldExpression>
 							</textField>
@@ -304,15 +325,15 @@ FROM
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="21" splitType="Stretch"/>
+		<band height="49" splitType="Stretch"/>
 	</detail>
 	<columnFooter>
-		<band height="21" splitType="Stretch"/>
+		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch">
 			<textField>
-				<reportElement x="235" y="19" width="100" height="20"/>
+				<reportElement x="215" y="21" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>

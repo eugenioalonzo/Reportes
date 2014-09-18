@@ -116,7 +116,7 @@ FROM
 				<textElement>
 					<font size="16" isBold="true"/>
 				</textElement>
-				<text><![CDATA[REPORTE DE FACTURAS]]></text>
+				<text><![CDATA[REPORTES DE fACTURAS]]></text>
 			</staticText>
 		</band>
 	</title>

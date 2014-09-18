@@ -106,10 +106,17 @@ public class InterfazReportes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jcbListaRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbListaRegistrosActionPerformed
-        
+        try {
+            GestionReporte gr = new GestionReporte();
+            gr.ReportesFacturas();
             ////////
             
             ////////
+        } catch (SQLException ex) {
+            Logger.getLogger(InterfazReportes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JRException ex) {
+            Logger.getLogger(InterfazReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jcbListaRegistrosActionPerformed
 

@@ -76,6 +76,18 @@ public class GestionReporte extends JInternalFrame
         
     }
     
-    
+    public void ReportesFacturas() throws SQLException, JRException 
+    {
+        Connection cn;
+        cn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Reportes","sa","123");
+        JasperReport reporte = null;
+        reporte = (JasperReport) JRLoader.loadObjectFromFile("ReportesFacturas.jasper");
+        JasperPrint imp = JasperFillManager.fillReport(reporte, null, cn);
+        
+        JasperViewer ver = new JasperViewer(imp);
+        ver.setTitle("FACTURAS");
+        ver.setVisible(true);         
+        
+    }
     
 }
